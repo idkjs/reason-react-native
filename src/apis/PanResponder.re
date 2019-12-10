@@ -1,15 +1,14 @@
 type gestureState = {
-  .
-  "stateID": float,
-  "moveX": float,
-  "moveY": float,
-  "x0": float,
-  "y0": float,
-  "dx": float,
-  "dy": float,
-  "vx": float,
-  "vy": float,
-  "numberActiveTouches": int,
+  stateID: float,
+  moveX: float,
+  moveY: float,
+  x0: float,
+  y0: float,
+  dx: float,
+  dy: float,
+  vx: float,
+  vy: float,
+  numberActiveTouches: int,
 };
 
 type t;

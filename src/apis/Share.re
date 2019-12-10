@@ -27,9 +27,8 @@ external sharedAction: action = "sharedAction";
 external dismissedAction: action = "dismissedAction";
 
 type shareResult = {
-  .
-  "action": action,
-  "activityType": option(string),
+  action,
+  activityType: option(string),
 };
 
 // multiple externals

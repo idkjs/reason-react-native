@@ -70,14 +70,13 @@ type webViewMessageEvent = Event.syntheticEvent(Js.t(webViewMessage));
 type webViewEvent = Js.t(webViewBaseEvent);
 
 type request = {
-  .
-  "url": string,
-  "title": string,
-  "loading": bool,
-  "canGoBack": bool,
-  "canGoForward": bool,
-  "lockIdentifier": string,
-  "navigationType": string,
+  url: string,
+  title: string,
+  loading: bool,
+  canGoBack: bool,
+  canGoForward: bool,
+  lockIdentifier: string,
+  navigationType: string,
 };
 
 [@react.component] [@bs.module "react-native"]
