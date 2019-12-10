@@ -34,13 +34,12 @@ module Source = {
 };
 
 module DefaultSource = {
-  type t;
-
-  [@bs.obj]
-  external fromUri:
-    (~uri: string, ~scale: float=?, ~width: float=?, ~height: float=?, unit) =>
-    t =
-    "";
+  type t = {
+    uri: string,
+    scale: option(float),
+    width: option(float),
+    height: option(float),
+  };
 
   external fromRequired: Packager.required => t = "%identity";
 };
@@ -57,7 +56,8 @@ type imageLoadEvent =
     "uri": Js.Nullable.t(string),
   });
 
-type errorEvent = Event.syntheticEvent({. "error": string});
+type errorEvent = Event.syntheticEvent(error)
+and error = {error: string};
 
 type progressEvent =
   Event.syntheticEvent({

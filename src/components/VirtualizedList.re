@@ -42,28 +42,17 @@ type onScrollToIndexFailedInfo = {
 
 type onScrollToIndexFailedParams = {. "info": onScrollToIndexFailedInfo};
 
-type viewabilityConfig;
-[@bs.obj]
-external viewabilityConfig:
-  (
-    ~minimumViewTime: float=?,
-    ~viewAreaCoveragePercentThreshold: float=?,
-    ~itemVisiblePercentThreshold: float=?,
-    ~waitForInteraction: bool=?,
-    unit
-  ) =>
-  viewabilityConfig =
-  "";
+type viewabilityConfig = {
+  minimumViewTime: option(float),
+  viewAreaCoveragePercentThreshold: option(float),
+  itemVisiblePercentThreshold: option(float),
+  waitForInteraction: option(bool),
+};
 
-type viewabilityConfigCallbackPair('item);
-[@bs.obj]
-external viewabilityConfigCallbackPair:
-  (
-    ~viewabilityConfig: viewabilityConfig,
-    ~onViewableItemsChanged: viewableItemsChanged('item) => unit
-  ) =>
-  viewabilityConfigCallbackPair('item) =
-  "";
+type viewabilityConfigCallbackPair('item) = {
+  viewabilityConfig,
+  onViewableItemsChanged: viewableItemsChanged('item) => unit,
+};
 
 type viewabilityConfigCallbackPairs('item) =
   array(viewabilityConfigCallbackPair('item));

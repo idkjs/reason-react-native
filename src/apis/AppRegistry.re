@@ -15,19 +15,24 @@ type appParameters;
 
 external asAppParameters: 'a => appParameters = "%identity";
 
-type appConfig;
+type appConfig('a) = {
+  appKey: string,
+  component: option(componentProvider('a)),
+  run: option(appParameters => unit),
+  section: option(bool),
+};
 
-[@bs.obj]
-external appConfig:
-  (
-    ~appKey: string,
-    ~component: componentProvider('a)=?,
-    ~run: appParameters => unit=?,
-    ~section: bool=?,
-    unit
-  ) =>
-  appConfig =
-  "";
+// [@bs.obj]
+// external appConfig:
+//   (
+//     ~appKey: string,
+//     ~component: componentProvider('a)=?,
+//     ~run: appParameters => unit=?,
+//     ~section: bool=?,
+//     unit
+//   ) =>
+//   appConfig =
+//   "";
 
 type runnable('a) = {
   component: Js.Nullable.t(componentProvider('a)),
@@ -66,7 +71,7 @@ external registerComponentWithSection:
   "registerComponent";
 
 [@bs.module "react-native"] [@bs.scope "AppRegistry"]
-external registerConfig: array(appConfig) => unit = "registerConfig";
+external registerConfig: array(appConfig('a)) => unit = "registerConfig";
 
 [@bs.module "react-native"] [@bs.scope "AppRegistry"]
 external registerRunnable: (appKey, appParameters => unit) => string =

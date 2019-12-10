@@ -162,12 +162,11 @@ type permissions = {
   sound: bool,
 };
 
-type requestPermissionsOptions;
-[@bs.obj]
-external requestPermissionsOptions:
-  (~alert: bool=?, ~badge: bool=?, ~sound: bool=?, unit) =>
-  requestPermissionsOptions =
-  "";
+type requestPermissionsOptions = {
+  alert: option(bool),
+  badge: option(bool),
+  sound: option(bool),
+};
 
 // multiple externals
 [@bs.module "react-native"] [@bs.scope "PushNotificationIOS"]
@@ -186,12 +185,11 @@ external abandonPermissions: unit => unit = "abandonPermissions";
 [@bs.module "react-native"] [@bs.scope "PushNotificationIOS"]
 external checkPermissions: (unit => permissions) => unit = "checkPermissions";
 
-type fetchResult;
-[@bs.obj]
-external fetchResult:
-  (~_NewData: string=?, ~_NoData: string=?, ~_ResultFailed: string=?, unit) =>
-  fetchResult =
-  "";
+type fetchResult = {
+  _NewData: option(string),
+  _NoData: option(string),
+  _ResultFailed: option(string),
+};
 
 [@bs.module "react-native"] [@bs.scope "PushNotificationIOS"]
 external finish: fetchResult => unit = "fetchResult";

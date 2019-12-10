@@ -1,22 +1,14 @@
-type content;
-type options;
-
-[@bs.obj]
-external content:
-  (~title: string=?, ~message: string=?, ~url: string=?, unit) => content =
-  "";
-
-[@bs.obj]
-external options:
-  (
-    ~subject: string=?,
-    ~tintColor: string=?,
-    ~excludedActivityTypes: array(string)=?,
-    ~dialogTitle: string=?,
-    unit
-  ) =>
-  options =
-  "";
+type content = {
+  title: option(string),
+  message: option(string),
+  url: option(string),
+};
+type options = {
+  subject: option(string),
+  tintColor: option(string),
+  excludedActivityTypes: option(array(string)),
+  dialogTitle: option(string),
+};
 
 type action;
 

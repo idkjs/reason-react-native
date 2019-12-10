@@ -1,22 +1,33 @@
 include WebViewElement;
 
 module Source = {
-  type t;
-
-  [@bs.obj]
-  external uri:
-    (
-      ~uri: string=?,
-      ~method: string=?,
-      ~headers: Js.t('a)=?,
-      ~body: string=?,
-      unit
-    ) =>
-    t =
-    "";
-
-  [@bs.obj]
-  external html: (~html: string=?, ~baseUrl: string=?, unit) => t = "";
+  type uri('a) = {
+    uri: option(string),
+    method: option(string),
+    headers: option(Js.t('a)),
+    body: option(string),
+  };
+  type html = {
+    html: option(string),
+    baseUrl: option(string),
+  };
+  type t('a) = {
+    uri: uri('a),
+    html,
+  };
+  // [@bs.obj]
+  // external uri:
+  //   (
+  //     ~uri: string=?,
+  //     ~method: string=?,
+  //     ~headers: Js.t('a)=?,
+  //     ~body: string=?,
+  //     unit
+  //   ) =>
+  //   t =
+  //   "";
+  // [@bs.obj]
+  // external html: (~html: string=?, ~baseUrl: string=?, unit) => t = "";
 };
 
 module DataDetectorTypes = WebView_DataDetectorTypes;
@@ -111,7 +122,7 @@ external make:
     ~renderLoading: unit => React.element=?,
     ~scalesPageToFit: bool=?,
     ~scrollEnabled: bool=?,
-    ~source: Source.t=?,
+    ~source: Source.t('a)=?,
     ~startInLoadingState: bool=?,
     ~thirdPartyCookiesEnabled: bool=?,
     ~userAgent: string=?,

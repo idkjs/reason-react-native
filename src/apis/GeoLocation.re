@@ -16,9 +16,9 @@ type error = {
   message: string,
 };
 
-type config;
-[@bs.obj]
-external config: (~skipPermissionRequests: bool=?, unit) => config = "";
+type config = {skipPermissionRequests: option(bool)};
+// [@bs.obj]
+// external config: (~skipPermissionRequests: bool=?, unit) => config = "";
 
 [@bs.val] [@bs.scope ("navigator", "geolocation")]
 external setRNConfiguration: config => unit = "setRNConfiguration";
